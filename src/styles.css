@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.btn-auth {
+    padding: 15px 0 15px 0;
+    background-color: chocolate;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.text-danger {
+    font-size: 12px;
+    margin: 10px 0 0 10px;
+}
+
+.spinner-border {
+    color: white;
+}

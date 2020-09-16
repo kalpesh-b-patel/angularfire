@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 offset-xl-8 offset-lg-6 offset-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Login to your account!</h5>
+          <hr>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <!-- Email -->
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+              <div *ngIf="loginForm.dirty && email.dirty && !email.valid" class="text-danger">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.email">Invalid email format</p>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+              <div *ngIf="loginForm.dirty && password.dirty && !password.valid" class="text-danger">
+                <p *ngIf="password.errors.required">Password is required</p>
+                <p *ngIf="password.errors.minlength">Password must be greater than 5 characters</p>
+                <p *ngIf="password.errors.maxlength">Password must be smaller than 30 characters</p>
+              </div>
+            </div>
+
+            <button [disabled]="!this.loginForm.valid" type="submit" class="btn btn-primary btn-block btn-auth bg-dark">
+              <span *ngIf="loading" class="spinner-grow" role="status" aria-hidden="true"></span>
+              {{ !loading ? 'Log in' : ''}}
+            </button>
+
+          </form>
+
+          <br>
+          <div class="row">
+            <div class="col text-center">
+              <a routerLink="/reset" class="btn btn-link">Forgot Password</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col text-center">
+              Don't have an account?<a routerLink="/signup" class="btn btn-link">Sign Up</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 offset-xl-8 offset-lg-6 offset-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Reset Password</h5>
+          <hr>
+          <form [formGroup]="resetForm" (ngSubmit)="reset()">
+
+            <!-- Email -->
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+              <div *ngIf="resetForm.dirty && email.dirty && !email.valid" class="text-danger">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.email">Invalid email format</p>
+              </div>
+            </div>
+
+            <button [disabled]="!this.resetForm.valid" type="submit" class="btn btn-primary btn-block btn-auth bg-dark">
+              <span *ngIf="loading" class="spinner-grow" role="status" aria-hidden="true"></span>
+              {{ !loading ? 'Reset Password' : ''}}
+            </button>
+
+          </form>
+
+          <div class="row">
+            <div class="col text-center">
+              <a routerLink="/signin" class="btn btn-link">Log In</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 offset-xl-8 offset-lg-6 offset-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Register</h5>
+          <hr>
+          <form [formGroup]="registerForm" (ngSubmit)="createUser()">
+
+            <!-- Firstname -->
+            <div class="form-group">
+              <input type="text" formControlName="fname" class="form-control" placeholder="Firstname">
+              <div *ngIf="registerForm.dirty && fname.dirty && !fname.valid" class="text-danger">
+                <p *ngIf="fname.errors.required">Firstname is required</p>
+                <p *ngIf="fname.errors.minlength">Firstname must be greater than 2 characters</p>
+                <p *ngIf="fname.errors.maxlength">Firstname must be smaller than 30 characters</p>
+              </div>
+            </div>
+
+            <!-- Lastname -->
+            <div class="form-group">
+              <input type="text" formControlName="lname" class="form-control" id="lastname" placeholder="Lastname">
+              <div *ngIf="registerForm.dirty && lname.dirty && !lname.valid" class="text-danger">
+                <p *ngIf="lname.errors.required">Lastname is required</p>
+                <p *ngIf="lname.errors.minlength">Lastname must be greater than 2 characters</p>
+                <p *ngIf="lname.errors.maxlength">Lastname must be smaller than 30 characters</p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+              <div *ngIf="registerForm.dirty && email.dirty && !email.valid" class="text-danger">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.email">Invalid email format</p>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+              <div *ngIf="registerForm.dirty && password.dirty && !password.valid" class="text-danger">
+                <p *ngIf="password.errors.required">Password is required</p>
+                <p *ngIf="password.errors.minlength">Password must be greater than 5 characters</p>
+                <p *ngIf="password.errors.maxlength">Password must be smaller than 30 characters</p>
+              </div>
+            </div>
+
+            <button [disabled]="!this.registerForm.valid" type="submit" class="btn btn-primary btn-block btn-auth bg-dark">
+              <span *ngIf="loading" class="spinner-grow" role="status" aria-hidden="true"></span>
+              {{ !loading ? 'Sign Up' : ''}}
+            </button>
+          </form>
+
+          <br>
+          <div class="row">
+            <div class="col text-center">
+              <span class="text-small">
+                By signing up, you agree to our <a routerLink="/terms" class="text-small">Terms of Use</a> and
+                <a routerLink="/privacy" class="btn btn-link text-small">Privacy Policy</a></span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col text-center">
+              Already have an account?<a routerLink="/signin" class="btn btn-link">Log In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
