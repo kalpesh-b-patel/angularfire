@@ -2,22 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './containers/app/app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { CounterModule } from './counter/counter.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './features/auth/auth.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ResetComponent } from './auth/components/reset/reset.component';
+import { ResetComponent } from './features/auth/containers/reset/reset.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpErrorInterceptor } from './interceptors/response.interceptor';
+import { HttpErrorInterceptor } from './interceptors/http.interceptor';
 import { ToastComponent } from './components/toast/toast.component';
 import { reducers } from './state';
 
@@ -35,6 +34,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('../app/features/auth/auth.module').then(m => m.AuthModule),
   }
 ];
 
@@ -51,14 +54,13 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    CounterModule,
     AngularFireModule.initializeApp(firebaseConfig),
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([]),
     NgbModule,
     AuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {

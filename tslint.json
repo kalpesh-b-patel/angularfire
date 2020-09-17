@@ -82,6 +82,7 @@
         "named": "never"
       }
     },
+    "object-curly-spacing": ["error"],
     "typedef": [
       true,
       "call-signature"
@@ -113,6 +114,8 @@
     },
     "whitespace": {
       "options": [
+        "check-preblock",
+        "check-module",
         "check-branch",
         "check-decl",
         "check-operator",

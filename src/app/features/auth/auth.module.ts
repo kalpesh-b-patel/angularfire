@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './containers/login/login.component';
+import { RegisterComponent } from './containers/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { TermsComponent } from './components/terms/terms.component';
-import { PrivacyComponent } from './components/privacy/privacy.component';
-import { HomeComponent } from '../components/home/home.component';
-import { ResetComponent } from './components/reset/reset.component';
+import { TermsComponent } from './containers/terms/terms.component';
+import { PrivacyComponent } from './containers/privacy/privacy.component';
+import { HomeComponent } from '../../components/home/home.component';
+import { ResetComponent } from './containers/reset/reset.component';
 import { StoreModule } from '@ngrx/store';
 import * as authReducer from './state/auth.reducer';
 

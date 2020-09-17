@@ -1,3 +1,7 @@
 .nav-item {
     margin-right: 10px;
 }
+
+.nav-link {
+    box-shadow: none;
+}

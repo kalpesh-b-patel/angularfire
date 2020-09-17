@@ -4,7 +4,7 @@ import { User } from 'firebase';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectDisplayName } from '../../auth/state/auth.reducer';
+import { selectDisplayName } from '../../features/auth/state/auth.reducer';
 import { AppState } from '../../state';
 
 @Component({
@@ -13,9 +13,7 @@ import { AppState } from '../../state';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // user: User;
   user$: Observable<any>;
-  // loading = true;
   constructor(private authService: AuthService, private http: HttpClient, private store: Store<AppState>) {
     // this.authService.currentUser().subscribe(user => {
     //   this.user = user;

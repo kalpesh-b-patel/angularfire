@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../state';
+import { login } from '../../state/auth.actions';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   loading = false;
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
@@ -35,9 +39,14 @@ export class LoginComponent implements OnInit {
 
   async login(): Promise <void> {
     this.loading = true;
-    await this.authService.login(
+    const user: User = await this.authService.login(
       this.loginForm.value.email,
       this.loginForm.value.password);
+    this.store.dispatch(login( { user: {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+    }}));
     this.loading = false;
   }
 
